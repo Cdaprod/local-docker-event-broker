@@ -1,0 +1,7 @@
+# Cdaprod/local-video-event-broker
+
+## Overview
+
+This repository sets up a RabbitMQ message broker and a Python-based metadata enricher service. The metadata enricher listens for stream events, enriches them with provenance attestations, and publishes the enriched data to RabbitMQ for consumption by other microservices.
+
+## Directory Structure
