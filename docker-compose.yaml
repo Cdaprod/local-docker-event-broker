@@ -10,7 +10,7 @@ services:
       - '15672:15672'  # Management UI port
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-      - ./app/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./event-broker/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
@@ -41,7 +41,7 @@ services:
 
   metadata-enricher:
     build:
-      context: ./app
+      context: ./event-broker
       dockerfile: Dockerfile
     container_name: metadata_enricher
     restart: unless-stopped
@@ -82,5 +82,5 @@ volumes:
 
 networks:
   broker_network:
-    external:
-      name: shared_network
+    external: true
+    name: rtmp_network
